@@ -31,7 +31,7 @@ force-https: True
 lang: "en"
 author: "Emmanuel Ortiguela"
 title: "{ Androiding }"
-description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
+description: "Blog and website of Emmanuel Ortiguela, blogging mainly for tech. Opinions expressed are mine."
 keywords: "Android, Emmanuel, Ortiguela, emmano"
 favicon: "/img/favicon.ico"
 
@@ -134,7 +134,7 @@ email: "emmanuel.ortiguela@gmail.com"
 # This works best when your author blurb image has a transparent background, or matches your site background color.
 
 # if the author_blurb is not set, then this feature is skipped
-author_blurb: "Emmanuel Ortiguela is a self taught Android developer now working for Asyncrhony"
+author_blurb: "Emmanuel Ortiguela is a self taught Android developer now working for Asynchrony"
 author_blurb_image: "/img/author.png"
 
 ##################
