@@ -245,9 +245,9 @@ SUCCESS!
 
 There are some evident "flaws" with this pattern:
 
-1. When our test runs, our test obeject gets injected twice. Once by the production code per-se. The second time, our test object is inject by `DaggerTestComponent` inside our test. This means that if we need to test an `Activity` that calls its `onCreate()` twice on the same test, we would have to re-inject the test object.
+1.  When our test runs, our test obeject gets injected twice. Once by the production code per-se. The second time, our test object is inject by `DaggerTestComponent` inside our test. This means that if we need to test an `Activity` that calls its `onCreate()` twice on the same test, we would have to re-inject the test object.
 
-2. This setup has a bit more boiler plate code.
+2.  This setup has a bit more boiler plate code.
 
 
 Please let me know what you thing of this configuration in the comments below.
