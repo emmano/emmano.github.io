@@ -250,7 +250,7 @@ There are some evident "flaws" with this pattern:
 2. This setup has a bit more boiler plate code.
 
 
-P.S.  Please note that this simple example does not require us to inject mock objects in our test. Let's imagine `MainActivity` depended on a `UserService`. We can easily inject a mock version of `UserService` in `MainActivityTest` by telling `TestApplicationComponent` that we will be injecting the test as well.
+P.S.  Please note that this simple example does not require us to inject mock objects in our test that are used by our test object. Let's imagine `MainActivity` depended on a `UserService`. We can easily inject a mock version of `UserService` in `MainActivityTest` by telling `TestApplicationComponent` that we will be injecting the test as well.
 
 `void inject(MainActivityTest);`
 
