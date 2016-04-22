@@ -31,7 +31,7 @@ force-https: True
 lang: "en"
 author: "Emmanuel Ortiguela"
 title: "{ Androiding }"
-description: "Blog and website of Emmanuel Ortiguela, blogging mainly for tech. Opinions expressed are mine."
+description: "Blog and website of Emmanuel Ortiguela, blogging mainly for Android. Opinions expressed are mine."
 keywords: "Android, Emmanuel, Ortiguela, emmano"
 favicon: "/img/favicon.ico"
 
@@ -159,8 +159,6 @@ social:
 
 pages_list:
   Blog: 'latest-post'
-  About: 'about'
-  Timeline: 'timeline'
   Contact: 'contact'
 
 # Exclusion list from the generated _site

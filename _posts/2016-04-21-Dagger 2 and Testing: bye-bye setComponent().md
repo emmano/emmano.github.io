@@ -8,9 +8,9 @@ tags: [ 'Dagger 2', 'Testing' ]
 
 There seems to be a common pattern when setting up Dagger 2 with testing frameworks like Espresso and Robolectric. Basically, it requires modifying production code (typically the `Application` class by adding a `setComponent(Component component)`) to allow tests to override the `Application` `Component` with a `Component` that contains `Modules` with mock versions of the dependencies provided by the production `Modules`. 
 
-I never liked the `setComponent()` approach. Regardless of how minimal the change in production code is, we should not have to modify production code to accomodate our tests. Hence, I would like to propose a different approach.
+I never liked the `setComponent()` approach. Regardless of how minimal the change in code is, we should not have to modify production code to accomodate our tests. Hence, I would like to propose a different approach.
 
-For this [example](https://github.com/emmano/DaggerTestExample) I will be using Robolectic 3 as the testing framework (this pattern can also be used with Espresso) and we will have a single `Application` wide `Component`.
+For this [example](https://github.com/emmano/DaggerTestExample) I will be using Robolectic 3 as the testing framework (this pattern can also be used with Espresso). This sample will have a single `Application` wide `Component`.
 
 Let's start by creating a new project with a simple `MainActivity`. `MainActivity` will only have a `TextView` that displays text that is provided by Dagger. 
 
@@ -105,7 +105,7 @@ public class DaggerApplication extends Application {
 
 Now here comes the interesing part. How do we test this?
 
-Let's start by creating a new Robolectric test for `MainActivity`, `MainActivityTest`. `MainActivityTest` needs to somewhow override the `ApplicationComponent`. We do this by proving a `Module` that returns a `String` that is "under our control" so we can verify the `TextView` is using the `String` provided by Dagger. The setup will be really similar to the current production setup.
+Let's start by creating a new Robolectric test for `MainActivity`, `MainActivityTest`. `MainActivityTest` needs to somewhow override the `ApplicationComponent`. We do this by proving a `Module` that returns a `String` that is "under our control" so we can verify the `TextView` is using the `String` provided by Dagger. We will then create a new `Component` for the test and use the new `Module` and its dependencies to inject our test object. This setup will be really similar to the current production setup.
 
 
 {% highlight java %}
@@ -206,7 +206,7 @@ import javax.inject.Singleton;
 }
 {% endhighlight %}
 
-Just like in production code, we use the `Application` class to store a reference of our `Component`, `TestApplicationComponent` in this case. Let's create `DaggerTestApplication`, store a reference to the test `Component` as a member and generate its getter.
+Just like in the production code, we use the `Application` class to store a reference of our `Component`, `TestApplicationComponent` in this case. Let's create `DaggerTestApplication`, store a reference to the test `Component` as a member, and generate its getter.
 
 {% highlight java %}
 package me.emmano.daggertestexample;
@@ -228,9 +228,9 @@ public class DaggerTestApplication extends DaggerApplication {
 }
 {% endhighlight %}
 
- There is a little gotcha here. We cannot simply create a class that extends `Application`. This will generate a `ClassCastException` inside `MainActivity.onCreate()` because we are casting our `Application Context` to a `DaggerApplication`. In order to solve this problem, we make `DaggerTestApplication` extend `DaggerApplication`. The next step is to inject our test object, `MainActivity` with our newly created `DaggerTestApplicationComponent`.
+ There is a little gotcha here. We cannot simply create a class that extends `Application`. This will generate a `ClassCastException` inside `MainActivity.onCreate()` because we are casting our `Application Context` to a `DaggerApplication`. In order to solve this problem, we make `DaggerTestApplication` extend `DaggerApplication`. The next step is to inject our test object, `MainActivity`, with our newly created `DaggerTestApplicationComponent`.
 
- We build the project and realize that we do not have an instance of `DaggerTestApplicationComponent`. In fact, if we try to look at the generated code we realize there is no generated code at all for our test package. This is because the `apt` plugin does not tell the dagger annotation processor look for `Components` in our `test` directory. We need to tell it to do so manually by adding the following to `build.gradle` inside the `dependencies{}`:
+ We build the project and realize that we do not have an instance of `DaggerTestApplicationComponent`. In fact, if we try to look at the generated code we realize that there is no generated code for our test package. This is because the `apt` plugin does not tell the dagger annotation processor look for `Components` in our `test` directory. We need to tell it to do so manually by adding the following to `build.gradle` inside the `dependencies{}`:
 
 
 {% highlight groovy %}
