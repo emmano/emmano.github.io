@@ -250,8 +250,12 @@ There are some evident "flaws" with this pattern:
 2. This setup has a bit more boiler plate code.
 
 
+Please let me know what you thing of this configuration in the comments below.
+
+Big shoutout to [@mathematicalfunk](https://github.com/Mathematicalfunk) for reviewing this.
+
 P.S.  Please note that this simple example does not require us to inject mock objects in our test that are used by our test object. Let's imagine `MainActivity` depended on a `UserService`. We can easily inject a mock version of `UserService` in `MainActivityTest` by telling `TestApplicationComponent` that we will be injecting the test as well.
 
 `void inject(MainActivityTest);`
 
-and providing the depoendency via a `Module` (i.e. our `TestApplicationModule`). Now we can `@Inject` our test **AND** `MainActivity` with a mock. 
+and providing the dependency via a `Module` (i.e. our `TestApplicationModule`). Now we can `@Inject` our test **AND** `MainActivity` with a mock.
