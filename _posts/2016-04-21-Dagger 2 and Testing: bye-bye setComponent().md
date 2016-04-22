@@ -250,7 +250,7 @@ There are some evident "flaws" with this pattern:
 2.  This setup has a bit more boiler plate code.
 
 
-Please let me know what you thing of this configuration in the comments below.
+Please let me know what you think of this configuration in the comments below.
 
 Big shoutout to [@mathematicalfunk](https://github.com/Mathematicalfunk) for reviewing this.
 
