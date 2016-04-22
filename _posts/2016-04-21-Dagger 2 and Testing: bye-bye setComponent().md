@@ -8,7 +8,7 @@ tags: [ 'Dagger 2', 'Testing' ]
 
 There seems to be a common pattern when setting up Dagger 2 with testing frameworks like Espresso and Robolectric. Basically, it requires modifying production code (typically the `Application` class by adding a `setComponent(Component component)`) to allow tests to override the `Application` `Component` with a `Component` that contains `Modules` with mock versions of the dependencies provided by the production `Modules`. 
 
-I never liked the `setComponent()` approach. Regardless of how minimal the change in code is, we should not have to modify production code to accomodate our tests. Hence, I would like to propose a different approach.
+I never liked the `setComponent()` approach. Regardless of how minimal the change is, we should not have to modify production code to accomodate our tests. Hence, I would like to propose a different approach.
 
 For this [example](https://github.com/emmano/DaggerTestExample) I will be using Robolectic 3 as the testing framework (this pattern can also be used with Espresso). This sample will have a single `Application` wide `Component`.
 
